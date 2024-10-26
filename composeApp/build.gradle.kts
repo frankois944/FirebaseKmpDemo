@@ -12,6 +12,24 @@ plugins {
     alias(libs.plugins.googleService)
 }
 
+// a list of pods using by Firebase
+// first : the pod name
+// second: add or not the -compiler-option -fmodules to the pod
+val firebasePods = listOf(
+    Pair("FirebaseCore", false),
+    Pair("FirebaseAuth", true),
+    /*Pair("FirebaseAnalytics", false),
+
+    Pair("FirebaseFirestore", true),
+    Pair("FirebaseDatabase", false),
+    Pair("FirebaseFunctions", true),
+    Pair("FirebaseMessaging", false),
+    Pair("FirebaseInstallations", false),
+    Pair("FirebaseRemoteConfig", false),
+    Pair("FirebasePerformance", false),
+    Pair("FirebaseStorage", true)*/
+)
+
 kotlin {
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
@@ -23,23 +41,6 @@ kotlin {
     //iosX64()
     //iosArm64()
     iosSimulatorArm64()
-
-    // a list of pods using by Firebase
-    // first : the pod name
-    // second: add or not the -compiler-option -fmodules to the pod
-    val firebasePods = listOf<Pair<String, Boolean>>(
-        Pair("FirebaseCore", false),
-        Pair("FirebaseAnalytics", false),
-        Pair("FirebaseAuth", true),
-        Pair("FirebaseFirestore", true),
-        Pair("FirebaseDatabase", false),
-        Pair("FirebaseFunctions", true),
-        Pair("FirebaseMessaging", false),
-        Pair("FirebaseInstallations", false),
-        Pair("FirebaseRemoteConfig", false),
-        Pair("FirebasePerformance", false),
-        Pair("FirebaseStorage", true)
-    )
     cocoapods {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
@@ -100,16 +101,36 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
-            implementation(libs.firebase.analytics)
-            implementation(libs.firebase.auth)
-            implementation(libs.firebase.database)
-            implementation(libs.firebase.firestore)
-            implementation(libs.firebase.functions)
-            implementation(libs.firebase.messaging)
-            implementation(libs.firebase.storage)
-            implementation(libs.firebase.installations)
-            implementation(libs.firebase.config)
-            implementation(libs.firebase.perf)
+            if (firebasePods.firstOrNull { it.first.contains("Analytics")} != null) {
+                implementation(libs.firebase.analytics)
+            }
+            if (firebasePods.firstOrNull { it.first.contains("Auth")} != null) {
+                implementation(libs.firebase.auth)
+            }
+            if (firebasePods.firstOrNull { it.first.contains("Database")} != null) {
+                implementation(libs.firebase.database)
+            }
+            if (firebasePods.firstOrNull { it.first.contains("Firestore")} != null) {
+                implementation(libs.firebase.firestore)
+            }
+            if (firebasePods.firstOrNull { it.first.contains("Functions")} != null) {
+                implementation(libs.firebase.functions)
+            }
+            if (firebasePods.firstOrNull { it.first.contains("Messaging")} != null) {
+                implementation(libs.firebase.messaging)
+            }
+            if (firebasePods.firstOrNull { it.first.contains("Storage")} != null) {
+                implementation(libs.firebase.storage)
+            }
+            if (firebasePods.firstOrNull { it.first.contains("Installations")} != null) {
+                implementation(libs.firebase.installations)
+            }
+            if (firebasePods.firstOrNull { it.first.contains("Config")} != null) {
+                implementation(libs.firebase.config)
+            }
+            if (firebasePods.firstOrNull { it.first.contains("Perf")} != null) {
+                implementation(libs.firebase.perf)
+            }
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
