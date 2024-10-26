@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "986130107097",
+    "project_id": "fir-kmpdemo-6cde4",
+    "storage_bucket": "fir-kmpdemo-6cde4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986130107097:android:746991bb071c00012fccc8",
+        "android_client_info": {
+          "package_name": "fr.francoisdabonot.firebasekmpdemo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_M8wKGHeVh0Rp6GvSoCtUxeGQUkx1mlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986130107097:android:dedf68ae10bd13552fccc8",
+        "android_client_info": {
+          "package_name": "fr.francoisdabonot.firebasekmpdemo.desktop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_M8wKGHeVh0Rp6GvSoCtUxeGQUkx1mlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

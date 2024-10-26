@@ -1,0 +1,5 @@
+.gradle
+build
+iosApp/Pods
+.DS_Store
+*.xcuserdatad
