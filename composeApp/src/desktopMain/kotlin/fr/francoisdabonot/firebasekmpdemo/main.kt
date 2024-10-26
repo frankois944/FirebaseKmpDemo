@@ -8,6 +8,7 @@ import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.FirebaseOptions
 import dev.gitlive.firebase.initialize
 
+// for full explanation https://github.com/GitLiveApp/firebase-java-sdk?tab=readme-ov-file#initializing-the-sdk
 fun startFirebase() {
     FirebasePlatform.initializeFirebasePlatform(object : FirebasePlatform() {
         val storage = mutableMapOf<String, String>()
