@@ -1,21 +1,38 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop.
+# Setup Firebase for Kotlin mutliplaftorm for Android, iOS and Desktop.
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+This repository is a sample showing how to load Firebase and some features.
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+Based on the project [Firebase for Kotlin](https://github.com/GitLiveApp/firebase-kotlin-sdk).
 
+It's implementing and loading all modules created by this project, except crashlytics (please use [CrashKiOS](https://github.com/touchlab/CrashKiOS)).
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
-[Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform/#compose-multiplatform),
-[Kotlin/Wasm](https://kotl.in/wasm/)…
+It's **really slow** to load because of Cocoapods is needed by the iOS app, could be reduced by the modules you really need.
 
-We would appreciate your feedback on Compose/Web and Kotlin/Wasm in the public Slack channel [#compose-web](https://slack-chats.kotlinlang.org/c/compose-web).
-If you face any issues, please report them on [GitHub](https://github.com/JetBrains/compose-multiplatform/issues).
+## Setup
 
-You can open the web application by running the `:composeApp:wasmJsBrowserDevelopmentRun` Gradle task.
+Each targeted platform has its own way to setup
+
+### iOS
+
+For starting up the sdk, the iOS app is following the [official](https://firebase.google.com/docs/ios/setup) and the cocoapods integration.
+
+Some swift code [need to be written](https://github.com/frankois944/FirebaseKmpDemo/blob/main/iosApp/iosApp/iOSApp.swift) for setting up the environnement. 
+
+An **iOS firebase app** need to be created and added to the iOS project as recommended.
+
+### Android
+
+For starting up the sdk, the iOS app is following the [official](https://firebase.google.com/docs/android/setup) and the gradle integration.
+
+No code need to be written as the gradle plugin do the job
+
+An **Android firebase app** need to be created and added to the Android project as recommended.
+
+### Desktop
+
+For starting up the sdk, the desktop app need to be manually loaded.
+
+Some kotlin code [need to be written](https://github.com/frankois944/FirebaseKmpDemo/blob/main/composeApp/src/desktopMain/kotlin/fr/francoisdabonot/firebasekmpdemo/main.kt)
+
+An **Android firebase app** need to be created, even it's not one, it's compatible.
+
