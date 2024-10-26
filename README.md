@@ -1,4 +1,4 @@
-# Setup Firebase for Kotlin multiplatform for Android, iOS and desktop.
+# Setup Firebase for Compose multiplatform Android, iOS and desktop.
 
 This repository is a sample showing how to load Firebase and some features.
 
