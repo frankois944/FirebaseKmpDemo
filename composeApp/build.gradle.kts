@@ -15,6 +15,7 @@ plugins {
 // a list of pods using by Firebase
 // first : the pod name
 // second: add or not the -compiler-option -fmodules to the pod
+// comment/uncomment the line to add the firebase library to your project
 val firebasePods = listOf(
     Pair("FirebaseCore", false),
     Pair("FirebaseAuth", true),
@@ -135,7 +136,6 @@ kotlin {
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
-            //   implementation(libs.firebase.java.sdk)
         }
     }
 }
