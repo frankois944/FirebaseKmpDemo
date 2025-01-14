@@ -4,3 +4,4 @@ iosApp/Pods
 .DS_Store
 *.xcuserdatad
 .kotlin
+composeApp/exportedNativeExample/.build
