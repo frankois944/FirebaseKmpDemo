@@ -1,6 +1,9 @@
+import io.github.frankois944.spmForKmp.definition.SwiftDependency
+import io.github.frankois944.spmForKmp.definition.product.ProductName
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.net.URI
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -8,28 +11,25 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.googleService)
+    alias(libs.plugins.spmForKmp)
 }
 
-// a list of pods using by Firebase
-// first : the pod name
-// second: add or not the -compiler-option -fmodules to the pod
-// comment/uncomment the line to add the firebase library to your project
-val firebasePods = listOf(
-    Pair("FirebaseCore", false),
-    Pair("FirebaseAuth", true),
-    /*Pair("FirebaseAnalytics", false),
-
-    Pair("FirebaseFirestore", true),
-    Pair("FirebaseDatabase", false),
-    Pair("FirebaseFunctions", true),
-    Pair("FirebaseMessaging", false),
-    Pair("FirebaseInstallations", false),
-    Pair("FirebaseRemoteConfig", false),
-    Pair("FirebasePerformance", false),
-    Pair("FirebaseStorage", true)*/
-)
+// a list of SPM package using by Firebase
+val firebaseDeps =
+    listOf(
+        ProductName("FirebaseCore"),
+        ProductName("FirebaseAuth"),
+        ProductName("FirebaseAnalytics"),
+        ProductName("FirebaseFirestore"),
+        ProductName("FirebaseDatabase"),
+        ProductName("FirebaseFunctions"),
+        ProductName("FirebaseMessaging"),
+        ProductName("FirebaseInstallations"),
+        ProductName("FirebaseRemoteConfig"),
+        ProductName("FirebasePerformance"),
+        ProductName("FirebaseStorage"),
+    )
 
 kotlin {
     androidTarget {
@@ -39,26 +39,18 @@ kotlin {
         }
     }
 
-    //iosX64()
-    //iosArm64()
-    iosSimulatorArm64()
-    cocoapods {
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
-        version = "1.0"
-        ios.deploymentTarget = "16.0"
-        podfile = project.file("../iosApp/Podfile")
-        framework {
-            binaryOption("bundleId", "fr.francoisdabonot.firebasekmpdemo.composeapp")
+    listOf(
+        // iosX64()
+        // iosArm64()
+        iosSimulatorArm64(),
+    ).forEach {
+        it.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
         }
-        firebasePods.forEach {
-            pod(it.first) {
-                version = libs.versions.firebaseiOSSDK.get()
-                if (it.second) {
-                    extraOpts += listOf("-compiler-option", "-fmodules")
-                }
+        it.compilations {
+            val main by getting {
+                cinterops.create("nativeExample") // Create a CInterop for `nativeExample`
             }
         }
     }
@@ -102,34 +94,34 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
-            if (firebasePods.firstOrNull { it.first.contains("Analytics")} != null) {
+            if (firebaseDeps.firstOrNull { it.name.contains("Analytics") } != null) {
                 implementation(libs.firebase.analytics)
             }
-            if (firebasePods.firstOrNull { it.first.contains("Auth")} != null) {
+            if (firebaseDeps.firstOrNull { it.name.contains("Auth") } != null) {
                 implementation(libs.firebase.auth)
             }
-            if (firebasePods.firstOrNull { it.first.contains("Database")} != null) {
+            if (firebaseDeps.firstOrNull { it.name.contains("Database") } != null) {
                 implementation(libs.firebase.database)
             }
-            if (firebasePods.firstOrNull { it.first.contains("Firestore")} != null) {
+            if (firebaseDeps.firstOrNull { it.name.contains("Firestore") } != null) {
                 implementation(libs.firebase.firestore)
             }
-            if (firebasePods.firstOrNull { it.first.contains("Functions")} != null) {
+            if (firebaseDeps.firstOrNull { it.name.contains("Functions") } != null) {
                 implementation(libs.firebase.functions)
             }
-            if (firebasePods.firstOrNull { it.first.contains("Messaging")} != null) {
+            if (firebaseDeps.firstOrNull { it.name.contains("Messaging") } != null) {
                 implementation(libs.firebase.messaging)
             }
-            if (firebasePods.firstOrNull { it.first.contains("Storage")} != null) {
+            if (firebaseDeps.firstOrNull { it.name.contains("Storage") } != null) {
                 implementation(libs.firebase.storage)
             }
-            if (firebasePods.firstOrNull { it.first.contains("Installations")} != null) {
+            if (firebaseDeps.firstOrNull { it.name.contains("Installations") } != null) {
                 implementation(libs.firebase.installations)
             }
-            if (firebasePods.firstOrNull { it.first.contains("Config")} != null) {
+            if (firebaseDeps.firstOrNull { it.name.contains("Config") } != null) {
                 implementation(libs.firebase.config)
             }
-            if (firebasePods.firstOrNull { it.first.contains("Perf")} != null) {
+            if (firebaseDeps.firstOrNull { it.name.contains("Perf") } != null) {
                 implementation(libs.firebase.perf)
             }
         }
@@ -142,12 +134,21 @@ kotlin {
 
 android {
     namespace = "fr.francoisdabonot.firebasekmpdemo"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    compileSdk =
+        libs.versions.android.compileSdk
+            .get()
+            .toInt()
 
     defaultConfig {
         applicationId = "fr.francoisdabonot.firebasekmpdemo"
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        minSdk =
+            libs.versions.android.minSdk
+                .get()
+                .toInt()
+        targetSdk =
+            libs.versions.android.targetSdk
+                .get()
+                .toInt()
         versionCode = 1
         versionName = "1.0"
     }
@@ -182,5 +183,27 @@ compose.desktop {
             packageName = "fr.francoisdabonot.firebasekmpdemo.desktop"
             packageVersion = "1.0.0"
         }
+    }
+}
+
+swiftPackageConfig {
+    // a list of SPM package using by Firebase
+    val localDeps = firebaseDeps
+    create("nativeExample") {
+        dependency(
+            SwiftDependency.Package.Remote.Version(
+                // Repository URL
+                url = URI("https://github.com/firebase/firebase-ios-sdk.git"),
+                // Libraries from the package
+                products = {
+                    // Export to Kotlin for use in shared Kotlin code and use it in your swift code
+                    localDeps.forEach { add(it, exportToKotlin = true) }
+                },
+                // (Optional) Package name, can be required in some cases
+                packageName = "firebase-ios-sdk",
+                // Package version
+                version = "11.6.0",
+            ),
+        )
     }
 }
