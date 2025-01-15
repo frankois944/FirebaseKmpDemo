@@ -6,7 +6,6 @@ Based on the [project Firebase for Kotlin](https://github.com/GitLiveApp/fireba
 
 It's implementing and loading all modules created by this project, except crashlytics (use [CrashKiOS](https://github.com/touchlab/CrashKiOS) instead).
 
-The project is really slow to load because of CocoaPods, it's needed by the iOS app and could be reduced by the modules you really need and uncomment the libs in the gradle file.
 ## Setup
 
 Each targeted platform has its own way to set up
