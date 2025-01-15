@@ -32,7 +32,7 @@ To start up the SDK, the desktop app needs to be manually loaded.
 
 Some Kotlin code [needs to be written](https://github.com/frankois944/FirebaseKmpDemo/blob/main/composeApp/src/desktopMain/kotlin/fr/francoisdabonot/firebasekmpdemo/main.kt).
 
-An Android Firebase app needs to be created, even it's not one, it's still compatible.
+An Android Firebase app needs to be created; even if it's not one, it's still compatible; maybe a Firebase web app configuration should also do the job.
 
 ### Web with KotlinJS
 
@@ -40,7 +40,7 @@ To start up the SDK, the WebApp app needs to be manually loaded.
 
 Some Kotlin code [needs to be written](https://github.com/frankois944/FirebaseKmpDemo/blob/main/webApp/src/jsMain/kotlin/com/example/App.kt).
 
-The firebase needs to be added as a npm dependencies, currently `implementation(npm("firebase", "10.12.2"))`, or a ealier version.
+The firebase needs to be added as a npm dependency, currently `implementation(npm("firebase", "10.12.2"))`, or a ealier version.
 
 > [!WARNING]  
 > firebase-kotlin-sdk for JS is out of date, some kotlin methods won't work as the JS API changed
