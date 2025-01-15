@@ -36,7 +36,6 @@ kotlin {
             implementation(libs.firebase.analytics)
             implementation(libs.kotlinx.coroutines.core)
             implementation(npm("firebase", "10.12.2"))
-            implementation(devNpm("firebase", "10.12.2"))
         }
 
         jsTest.dependencies {
