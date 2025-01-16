@@ -20,7 +20,7 @@ An iOS Firebase app needs to be created and added to the iOS project as recomm
 
 ### Android
 
-For starting up the SDK, the iOS app is following the [official way](https://firebase.google.com/docs/android/setup) and the Gradle integration.
+For starting up the SDK, the Android app is following the [official way](https://firebase.google.com/docs/android/setup) and the Gradle integration.
 
 No code needs to be written, as the Gradle plugin does the job.
 
