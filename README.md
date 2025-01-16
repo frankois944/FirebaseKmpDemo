@@ -6,6 +6,8 @@ Based on the [project Firebase for Kotlin](https://github.com/GitLiveApp/fireba
 
 It's implementing and loading all modules created by this project, except crashlytics (use [CrashKiOS](https://github.com/touchlab/CrashKiOS) instead).
 
+I'm using [spm4kmp](https://github.com/frankois944/spm4Kmp) for compiling Firebase iOS
+
 ## Setup
 
 Each targeted platform has its own way to set up
