@@ -19,8 +19,8 @@ plugins {
 val firebaseDeps =
     listOf(
         ProductName("FirebaseCore"),
-        ProductName("FirebaseAuth"),
         ProductName("FirebaseAnalytics"),
+        ProductName("FirebaseAuth"),
         ProductName("FirebaseFirestore"),
         ProductName("FirebaseDatabase"),
         ProductName("FirebaseFunctions"),
@@ -190,6 +190,7 @@ swiftPackageConfig {
     // a list of SPM package using by Firebase
     val localDeps = firebaseDeps
     create("nativeExample") {
+        minMacos = "10.15"
         dependency(
             SwiftDependency.Package.Remote.Version(
                 // Repository URL
