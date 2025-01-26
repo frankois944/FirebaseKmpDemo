@@ -198,7 +198,9 @@ swiftPackageConfig {
                 // Libraries from the package
                 products = {
                     // Export to Kotlin for use in shared Kotlin code and use it in your swift code
-                    localDeps.forEach { add(it, exportToKotlin = true) }
+                    // the export doesn't work when gitlive is implemented, my guess is a bug with cinterop
+                    // because gitlive already use cinterop
+                    localDeps.forEach { add(it, exportToKotlin = false) }
                 },
                 // (Optional) Package name, can be required in some cases
                 packageName = "firebase-ios-sdk",
