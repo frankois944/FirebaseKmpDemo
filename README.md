@@ -21,7 +21,7 @@ Each targeted platform has its own way to set up
 
 ### iOS
 
-For starting up the SDK, the iOS app is following the [official way](https://firebase.google.com/docs/ios/setup) and the CocoaPods integration.
+For starting up the SDK, the iOS app is following the [official way](https://firebase.google.com/docs/ios/setup) and the SPM integration.
 
 Some Swift code needs [to be written](https://github.com/frankois944/FirebaseKmpDemo/blob/main/iosApp/iosApp/iOSApp.swift) to set up the environment.
 
