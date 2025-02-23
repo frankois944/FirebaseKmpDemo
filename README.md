@@ -4,6 +4,12 @@ This repository is a sample showing how to load Firebase and use some features o
 
 Based on the [project Firebase for Kotlin](https://github.com/GitLiveApp/firebase-kotlin-sdk).
 
+
+> [!NOTE]  
+> [Firebase for Kotlin](https://github.com/GitLiveApp/firebase-kotlin-sdk) is totally optional; you can directly use the Firebase library in Kotlin if you exported them to Kotlin.
+>
+>  Set [exportToKotlin = true](https://github.com/frankois944/FirebaseKmpDemo/blob/505fd0bf45b131621049d4f3489f150721e74bdd/composeApp/build.gradle.kts#L199C17-L204C19) and remove the GitLiveApp dependencies.
+
 It's implementing and loading all modules created by this project, except crashlytics (use [CrashKiOS](https://github.com/touchlab/CrashKiOS) instead).
 
 I'm using [spm4kmp](https://github.com/frankois944/spm4Kmp) for compiling Firebase iOS
