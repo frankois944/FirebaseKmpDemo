@@ -16,7 +16,7 @@ kotlin {
             }
             runTask {
                 sourceMaps = true
-                devServer =
+                devServerProperty =
                     KotlinWebpackConfig.DevServer(
                         open = false,
                         port = 3000,
