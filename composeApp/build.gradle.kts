@@ -1,4 +1,3 @@
-import io.github.frankois944.spmForKmp.definition.SwiftDependency
 import io.github.frankois944.spmForKmp.definition.product.ProductName
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
@@ -191,8 +190,8 @@ swiftPackageConfig {
     val localDeps = firebaseDeps
     create("nativeExample") {
         minMacos = "10.15"
-        dependency(
-            SwiftDependency.Package.Remote.Version(
+        dependency {
+            remotePackageVersion(
                 // Repository URL
                 url = URI("https://github.com/firebase/firebase-ios-sdk.git"),
                 // Libraries from the package
@@ -206,7 +205,7 @@ swiftPackageConfig {
                 packageName = "firebase-ios-sdk",
                 // Package version
                 version = "11.6.0",
-            ),
-        )
+            )
+        }
     }
 }

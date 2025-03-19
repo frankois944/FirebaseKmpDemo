@@ -29,7 +29,9 @@ let package = Package(
         .product(name: "FirebasePerformance", package: "firebase-ios-sdk"),
         .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
       ],
-      path: "Sources")
+      path: "Sources"
+
+    )
 
   ]
 )
