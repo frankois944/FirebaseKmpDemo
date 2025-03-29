@@ -2,7 +2,6 @@ import io.github.frankois944.spmForKmp.definition.product.ProductName
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import java.net.URI
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -193,7 +192,7 @@ swiftPackageConfig {
         dependency {
             remotePackageVersion(
                 // Repository URL
-                url = URI("https://github.com/firebase/firebase-ios-sdk.git"),
+                url = uri("https://github.com/firebase/firebase-ios-sdk.git"),
                 // Libraries from the package
                 products = {
                     // Export to Kotlin for use in shared Kotlin code and use it in your swift code
