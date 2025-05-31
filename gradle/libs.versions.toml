@@ -20,7 +20,7 @@ junit = "4.13.2"
 kotlin = "2.1.21"
 kotlinx-coroutines = "1.10.1"
 googleService = "4.4.2"
-spmForKmp = "0.9.0"
+spmForKmp = "0.10.0"
 coroutines = "1.10.1"
 
 [libraries]

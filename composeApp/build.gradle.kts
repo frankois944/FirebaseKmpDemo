@@ -1,6 +1,5 @@
 import io.github.frankois944.spmForKmp.definition.product.ProductName
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -13,20 +12,22 @@ plugins {
     alias(libs.plugins.spmForKmp)
 }
 
+val useExperimentalCopyResources = true
+
 // a list of SPM package using by Firebase
 val firebaseDeps =
     listOf(
-        ProductName("FirebaseCore"),
+        ProductName("FirebaseCore", isIncludedInExportedPackage = !useExperimentalCopyResources),
         ProductName("FirebaseAnalytics"),
-        ProductName("FirebaseAuth"),
+        ProductName("FirebaseAuth", isIncludedInExportedPackage = !useExperimentalCopyResources),
         ProductName("FirebaseFirestore"),
-        ProductName("FirebaseDatabase"),
-        ProductName("FirebaseFunctions"),
-        ProductName("FirebaseMessaging"),
-        ProductName("FirebaseInstallations"),
-        ProductName("FirebaseRemoteConfig"),
-        ProductName("FirebasePerformance"),
-        ProductName("FirebaseStorage"),
+        ProductName("FirebaseDatabase", isIncludedInExportedPackage = !useExperimentalCopyResources),
+        ProductName("FirebaseFunctions", isIncludedInExportedPackage = !useExperimentalCopyResources),
+        ProductName("FirebaseMessaging", isIncludedInExportedPackage = !useExperimentalCopyResources),
+        ProductName("FirebaseInstallations", isIncludedInExportedPackage = !useExperimentalCopyResources),
+        ProductName("FirebaseRemoteConfig", isIncludedInExportedPackage = !useExperimentalCopyResources),
+        ProductName("FirebasePerformance", isIncludedInExportedPackage = !useExperimentalCopyResources),
+        ProductName("FirebaseStorage", isIncludedInExportedPackage = !useExperimentalCopyResources),
     )
 
 kotlin {
@@ -187,7 +188,7 @@ swiftPackageConfig {
     // a list of SPM package using by Firebase
     val localDeps = firebaseDeps
     create("nativeExample") {
-        minMacos = "10.15"
+        copyDependenciesToApp = true
         dependency {
             remotePackageVersion(
                 // Repository URL
