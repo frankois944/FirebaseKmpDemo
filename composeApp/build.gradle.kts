@@ -12,22 +12,20 @@ plugins {
     alias(libs.plugins.spmForKmp)
 }
 
-val useExperimentalCopyResources = true
-
 // a list of SPM package using by Firebase
 val firebaseDeps =
     listOf(
-        ProductName("FirebaseCore", isIncludedInExportedPackage = !useExperimentalCopyResources),
+        ProductName("FirebaseCore"),
         ProductName("FirebaseAnalytics"),
-        ProductName("FirebaseAuth", isIncludedInExportedPackage = !useExperimentalCopyResources),
+        ProductName("FirebaseAuth"),
         ProductName("FirebaseFirestore"),
-        ProductName("FirebaseDatabase", isIncludedInExportedPackage = !useExperimentalCopyResources),
-        ProductName("FirebaseFunctions", isIncludedInExportedPackage = !useExperimentalCopyResources),
-        ProductName("FirebaseMessaging", isIncludedInExportedPackage = !useExperimentalCopyResources),
-        ProductName("FirebaseInstallations", isIncludedInExportedPackage = !useExperimentalCopyResources),
-        ProductName("FirebaseRemoteConfig", isIncludedInExportedPackage = !useExperimentalCopyResources),
-        ProductName("FirebasePerformance", isIncludedInExportedPackage = !useExperimentalCopyResources),
-        ProductName("FirebaseStorage", isIncludedInExportedPackage = !useExperimentalCopyResources),
+        ProductName("FirebaseDatabase"),
+        ProductName("FirebaseFunctions"),
+        ProductName("FirebaseMessaging"),
+        ProductName("FirebaseInstallations"),
+        ProductName("FirebaseRemoteConfig"),
+        ProductName("FirebasePerformance"),
+        ProductName("FirebaseStorage"),
     )
 
 kotlin {
@@ -188,8 +186,9 @@ swiftPackageConfig {
     // a list of SPM package using by Firebase
     val localDeps = firebaseDeps
     create("nativeExample") {
-        copyDependenciesToApp = true
         dependency {
+            linkerOpts = listOf("-ObjC")
+            exportedPackageSettings { includeProduct = listOf("FirebaseFirestore") }
             remotePackageVersion(
                 // Repository URL
                 url = uri("https://github.com/firebase/firebase-ios-sdk.git"),
@@ -200,8 +199,6 @@ swiftPackageConfig {
                     // because gitlive already use cinterop
                     localDeps.forEach { add(it, exportToKotlin = false) }
                 },
-                // (Optional) Package name, can be required in some cases
-                packageName = "firebase-ios-sdk",
                 // Package version
                 version = "11.6.0",
             )

@@ -17,10 +17,10 @@ firebase = "2.1.0"
 firebaseiOSSDK = "11.4.0"
 firebaseJavaSdk = "0.4.6"
 junit = "4.13.2"
-kotlin = "2.1.21"
+kotlin = "2.2.0"
 kotlinx-coroutines = "1.10.1"
 googleService = "4.4.2"
-spmForKmp = "0.10.0"
+spmForKmp = "1.0.0"
 coroutines = "1.10.1"
 
 [libraries]
