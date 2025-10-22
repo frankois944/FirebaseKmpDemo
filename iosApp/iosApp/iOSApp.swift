@@ -1,5 +1,6 @@
 import SwiftUI
 import FirebaseCore
+import FirebaseFirestore
 
 // For full explanation
 // https://firebase.google.com/docs/ios/learn-more?hl=en#swiftui
