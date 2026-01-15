@@ -5,3 +5,4 @@ iosApp/Pods
 *.xcuserdatad
 .kotlin
 composeApp/exportedNativeExample/.build
+composeApp/src/swift/nativeExample/StartYourBridgeHere.swift
