@@ -4,7 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "exportedNativeExample",
-    platforms: [.iOS("12.0"),.macOS("10.13"),.tvOS("12.0"),.watchOS("4.0")],
+    platforms: [.iOS("15.0"),.macOS("10.13"),.tvOS("12.0"),.watchOS("4.0")],
     products: [
         .library(
             name: "exportedNativeExample",
@@ -12,7 +12,7 @@ let package = Package(
             targets: ["exportedNativeExample"])
     ],
     dependencies: [
-        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", exact: "11.6.0")
+        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", exact: "12.9.0")
     ],
     targets: [
         .target(

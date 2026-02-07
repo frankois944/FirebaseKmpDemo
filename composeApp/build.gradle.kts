@@ -18,14 +18,14 @@ val firebaseDeps =
         ProductName("FirebaseCore"),
         ProductName("FirebaseAnalytics"),
         ProductName("FirebaseAuth"),
-        ProductName("FirebaseFirestore"),
         ProductName("FirebaseDatabase"),
         ProductName("FirebaseFunctions"),
         ProductName("FirebaseMessaging"),
         ProductName("FirebaseInstallations"),
         ProductName("FirebaseRemoteConfig"),
         ProductName("FirebasePerformance"),
-        ProductName("FirebaseStorage"),
+        ProductName("FirebaseFirestoreInternal", alias = "FirebaseFirestore"),
+        ProductName("FirebaseAILogic"),
     )
 
 kotlin {
@@ -188,7 +188,7 @@ swiftPackageConfig {
     create("nativeExample") {
         dependency {
             linkerOpts = listOf("-ObjC")
-            exportedPackageSettings { includeProduct = listOf("FirebaseFirestore") }
+            minIos = "15.0"
             remotePackageVersion(
                 // Repository URL
                 url = uri("https://github.com/firebase/firebase-ios-sdk.git"),
@@ -200,7 +200,7 @@ swiftPackageConfig {
                     localDeps.forEach { add(it, exportToKotlin = false) }
                 },
                 // Package version
-                version = "11.6.0",
+                version = "12.9.0",
             )
         }
     }
