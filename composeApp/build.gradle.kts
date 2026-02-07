@@ -79,7 +79,10 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            implementation(project.dependencies.platform("com.google.firebase:firebase-bom:33.5.1"))
+            implementation(project.dependencies.platform("com.google.firebase:firebase-bom:34.9.0"))
+            if (firebaseDeps.firstOrNull { it.name.contains("AILogic") } != null) {
+                implementation("com.google.firebase:firebase-ai")
+            }
         }
         commonMain.dependencies {
             implementation(compose.runtime)
